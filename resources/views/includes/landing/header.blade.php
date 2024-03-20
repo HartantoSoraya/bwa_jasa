@@ -2,6 +2,7 @@
     class="h-full w-full border-box transition-all duration-500 linear lg:px-16 md:px-20 px-8 py-8 bg-white">
     <div class="navbar-1-1" style="font-family: 'Poppins', sans-serif">
         <div class=" mx-auto flex flex-wrap flex-row items-center justify-between">
+
             <a href="index.php" class="flex text-3xl font-bold items-center">
                 SERV
             </a>
@@ -21,8 +22,8 @@
                 id="menu">
                 <nav
                     class="lg:space-x-12 space-x-0 lg:flex items-center justify-between text-base pt-8 lg:pt-0 lg:space-y-0 space-y-6">
-                    <a href="index.php" class="block nav-link active font-medium">Home</a>
-                    <a href="explore.php" class="block nav-link text-serv-text">Explore</a>
+                    <a href="{{ route('index') }}" class="block nav-link active font-medium">Home</a>
+                    <a href="{{ route('explore.landing') }}" class="block nav-link text-serv-text">Explore</a>
                     <a href="#" class="block nav-link text-serv-text">How It Works</a>
                     <a href="#" class="block nav-link text-serv-text">Stories</a>
                     <a href="#" class="block nav-link text-serv-text">Tips</a>
@@ -35,7 +36,7 @@
                     class="text-serv-login-text items-center border-0 block lg:inline-block lg:py-3 lg:px-10 focus:outline-none rounded-2xl font-medium text-base mt-6 lg:mt-0">
                     Log In
                 </button>
-                
+
                 <button
                     onclick="toggleModal('registerModal')"
                     class="lg:bg-serv-services-bg text-serv-login-text items-center border-0 block lg:inline-block  lg:py-3 lg:px-10 focus:outline-none rounded-2xl font-medium text-base mt-6 lg:mt-0">
@@ -44,4 +45,5 @@
             </div>
         </div>
     </div>
+    
 </section>
