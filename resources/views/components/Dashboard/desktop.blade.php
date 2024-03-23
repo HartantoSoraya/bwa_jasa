@@ -13,9 +13,8 @@
             <div>
                 <!--Author name-->
                 <p class="font-semibold text-gray-900 text-md">{{ Auth::user()->name }}</p>
-                <p class="text-sm font-light text-serv-text">
-                    Website Developer
-                </p>
+
+                <p class="text-sm font-light text-serv-text">Website Developer</p>
             </div>
         </div>
 
