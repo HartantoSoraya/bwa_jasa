@@ -3,16 +3,36 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+
+use Illuminate\Support\Facades\Storage;
+
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+use Faker\Provider\File;
+use Illuminate\Support\Facades\Auth;
+
+use App\Models\Order;
+use App\Models\Service;
+use App\Models\User;
+use App\Models\OrderStatus;
 
 class RequestController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('pages.dashboard.request.index');
+        $orders = Order::where('buyer_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+
+        return view('pages.dashboard.request.index', compact('orders'));
     }
 
     /**
@@ -20,7 +40,7 @@ class RequestController extends Controller
      */
     public function create()
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -28,44 +48,55 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return abort(404);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        return view('pages.dashboard.request.detail');
+        // detail
+        $order = Order::where('id', $id)->first();
+
+        return view('pages.dashboard.request.detail', compact('order'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        return abort('404');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        return abort('404');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        return abort('404');
     }
 
     // custom
     public function approve($id)
     {
+        $order = Order::where('id', $id)->first();
 
+        // update order
+        $order = Order::find($order['id']);
+        $order->order_status_id = 1;
+        $order->save();
+
+        toast()->success('Approve has been success');
+        return redirect()->route('member.request.index');
     }
 }
